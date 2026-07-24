@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  smart-gateway:
+    build: .
+    container_name: smart-gateway
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    volumes:
+      # 数据持久化
+      - ./data:/app/data
+      # 配置文件
+      - ./config.yaml:/app/config.yaml:ro
+    environment:
+      - TZ=Asia/Shanghai
+      - SMART_GATEWAY_API_KEY=sk-smart-gateway-8765
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8765/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

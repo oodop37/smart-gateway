@@ -1,0 +1,47 @@
+"""
+constants.py - 共享常量定义
+"""
+MODEL_KEYWORDS = {
+    "deepseek": ["deepseek", "deep-seek"],
+    "qwen": ["qwen", "通义"],
+    "glm": ["glm", "chatglm", "zhipu"],
+    "gpt-4o": ["gpt-4o", "gpt4o"],
+    "gpt-4": ["gpt-4", "gpt4"],
+    "claude": ["claude"],
+    "gemini": ["gemini"],
+    "gemma": ["gemma"],
+    "llama": ["llama", "llm"],
+    "mistral": ["mistral"],
+    "mixtral": ["mixtral"],
+    "yi": ["yi", "零一"],
+    "baichuan": ["baichuan", "百川"],
+    "minimax": ["minimax", "mini-max"],
+    "moonshot": ["moonshot", "月之暗面", "kimi"],
+    "step": ["step", "阶跃"],
+    "sensechat": ["sensechat", "sense", "商汤"],
+    "ernie": ["ernie", "文心"],
+    "spark": ["spark", "讯飞", "星火"],
+    "hunyuan": ["hunyuan", "混元"],
+}
+
+MODEL_ALIASES = {
+    "deepseek": ["deepseek", "deep-seek"],
+    "qwen": ["qwen", "通义"],
+    "glm": ["glm", "chatglm"],
+    "gpt-4o": ["gpt-4o", "gpt4o"],
+    "gpt-4": ["gpt-4", "gpt4"],
+    "claude": ["claude"],
+    "gemini": ["gemini"],
+    "llama": ["llama", "llm"],
+    "mistral": ["mistral"],
+    "mixtral": ["mixtral"],
+    "yi": ["yi", "零一"],
+    "baichuan": ["baichuan", "百川"],
+    "minimax": ["minimax", "mini-max"],
+    "moonshot": ["moonshot", "月之暗面", "kimi"],
+    "step": ["step", "阶跃"],
+    "sensechat": ["sensechat", "sense", "商汤"],
+    "ernie": ["ernie", "文心"],
+    "spark": ["spark", "讯飞", "星火"],
+    "hunyuan": ["hunyuan", "混元"],
+}

@@ -1,0 +1,68 @@
+# ============================================================
+# Smart Gateway - 智能聚合网关配置
+# ============================================================
+
+# 监听端口
+host: "0.0.0.0"
+port: 8765
+
+# 数据库
+database:
+  path: "data/gateway.db"    # SQLite 数据库路径
+
+# 评分权重
+scoring:
+  ability_weight: 0.4        # 能力分权重 α
+  stability_weight: 0.6      # 稳定分权重 β
+  stability_window: 100      # 稳定分滑动窗口大小（最近N次请求）
+  success_bonus: 1           # 成功加稳定分
+  failure_penalty: 5         # 失败扣稳定分
+  circuit_breaker_failures: 3  # 连续失败多少次熔断
+  circuit_breaker_seconds: 60  # 熔断多少秒
+
+# 排行榜爬虫
+leaderboard:
+  enabled: true
+  interval_minutes: 360      # 每6小时刷新一次
+  sources:
+    - name: "lmarena_csv"
+      url: "https://huggingface.co/spaces/lmarena-ai/arena-leaderboard/raw/main/leaderboard_table_20250601.csv"
+      parser: "csv"
+      enabled: true
+
+# GitHub 自动发现
+discovery:
+  enabled: false          # 已改为手动触发，通过 /api/discovery/scan 接口
+  interval_minutes: 1440     # 每天刷新一次
+  repos:
+    - url: "https://github.com/chatanywhere/GPT_API_free"
+      parser: "readme"       # 解析 README 中的 API 列表
+    - url: "https://github.com/LLM-Red-Team/awesome-free-chatgpt"
+      parser: "readme"
+
+# 上下文压缩
+compression:
+  enabled: false             # 默认关闭，需要在管理面板手动开启
+  mode: "rtk"                # rtk | builtin | hybrid
+  max_context_tokens: 4096   # 压缩后最大 token 数
+  cache_ttl_minutes: 30      # 语义缓存过期时间
+
+# API 鉴权
+auth:
+  enabled: true              # 是否启用 API Key 鉴权
+  api_key: "sk-smart-gateway-8765"  # 默认 API Key，建议改掉；可通过环境变量 SMART_GATEWAY_API_KEY 覆写
+
+# 安全加固
+security:
+  max_body_size_mb: 16       # 请求体大小限制（MB）
+  rate_limit_per_minute: 60  # 每分钟最大请求数
+
+# CORS 配置
+cors:
+  allowed_origins:
+    - "*"                     # 开发环境；生产环境建议改为具体域名
+
+# 日志
+logging:
+  level: "INFO"              # DEBUG | INFO | WARNING | ERROR
+  file: "data/gateway.log"
